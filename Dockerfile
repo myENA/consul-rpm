@@ -1,5 +1,5 @@
 FROM centos:7
-MAINTAINER Aaron Hury <ahurt@ena.com>
+MAINTAINER Aaron Hurt <ahurt@ena.com>
 
 ADD . /tmp/build
 
