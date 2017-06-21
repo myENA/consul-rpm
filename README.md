@@ -4,66 +4,77 @@ Originally forked from [CiscoCloud/consul-rpm](https://github.com/CiscoCloud/con
 
 # Building
 
-If you have Vagrant installed:
-
-* Check out this repo.
+* Check out this repo
     ```
     git clone https://github.com/myENA/consul-rpm
     ```
 
-* Add or update the official CentOS 7 boxfile in your vagrant environment.
+* Prepare the artifacts location
+    ```
+    cd consul-rpm
+    mkdir -p artifacts
+    ```
 
-Add the box:
+## With Docker
+
+* Build the image
+    ```
+    docker build -t ena/consul-rpm .
+    ```
+
+* Run the image and build the RPMs
+    ```
+    docker run -v $PWD/artifacts:/tmp/artifacts -it ena/consul-rpm
+    ```
+
+## With Vagrant
+
+* Add CentOS 7 box to your vagrant environment if you don't already have it
     ```
     vagrant box add centos/7
     ```
 
-Update the box:
+* Or update your existing CentOS 8 box
     ```
     vagrant box update --box centos/7
     ```
 
-* Vagrant up! The rpms will be copied to working directory after provisioning.
+* Vagrant up
     ```
     vagrant up
     ```
 
-Or, do it manually by building the RPM as a non-root user from your home directory:
+## Manual without Vagrant or Docker (the hard way)
 
-* Check out this repo. Seriously - check it out. Nice.
-    ```
-    git clone https://github.com/myENA/consul-rpm
-    ```
-
-* Install `rpmdevtools` and `mock`.
+* Install `rpmdevtools` and `mock` if you don't already have them
     ```
     sudo yum install rpmdevtools mock
     ```
 
-* Set up your rpmbuild directory tree.
+* Set up your rpmbuild directory tree
     ```
     rpmdev-setuptree
     ```
 
-* Link the spec file and sources.
+* Link the spec file and sources
     ```
     ln -sf $HOME/consul-rpm/SPECS/consul.spec $HOME/rpmbuild/SPECS/
     find $HOME/consul-rpm/SOURCES -type f -exec ln -sf {} $HOME/rpmbuild/SOURCES/ \;
     ```
 
-* Download remote source files.
+* Download remote source files
     ```
     spectool -g -R rpmbuild/SPECS/consul.spec
     ```
 
-* Build the RPM.
+* Build the RPMs
     ```
     rpmbuild -ba rpmbuild/SPECS/consul.spec
     ```
 
 ## Result
 
-Five RPMs will be copied to `./artifacts/`:
+Five RPMs will be copied to the `artifacts` folder:
 * `consul-<version>-<release>.rpm`          - The binary and systemd service definition
 * `consul-checks-<version>-<release>.rpm`   - Example check scripts
 * `consul-config-<version>-<release>.rpm`   - Example agent configuration
