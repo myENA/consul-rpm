@@ -88,7 +88,7 @@ Five RPMs will be copied to the `artifacts` folder:
 * Start the service and tail the logs: `systemctl start consul.service` and `journalctl -f --no-pager -u consul`
 * Optionally start on reboot with: `systemctl enable consul.service`
 
-## Config
+## Configuring
 
 Config files are loaded in lexicographical order from the `config-dir` specified in `/etc/sysconfig/consul` (config package).
 You may modify and/or add to the provided configuration as needed.
