@@ -63,7 +63,7 @@ Or, do it manually by building the RPM as a non-root user from your home directo
 
 ## Result
 
-Five RPMs:
+Five RPMs will be copied to `./artifacts/`:
 * `consul-<version>-<release>.rpm`          - The binary and systemd service definition
 * `consul-checks-<version>-<release>.rpm`   - Example check scripts
 * `consul-config-<version>-<release>.rpm`   - Example agent configuration
