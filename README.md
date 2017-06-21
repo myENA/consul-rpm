@@ -2,7 +2,7 @@
 
 Originally forked from [CiscoCloud/consul-rpm](https://github.com/CiscoCloud/consul-rpm) and modified for the ENA environment.
 
-# Build
+# Building
 
 If you have Vagrant installed:
 
@@ -70,7 +70,7 @@ Five RPMs:
 * `consul-services-<version>-<release>.rpm` - Example service definitions
 * `consul-webui-<version>-<release>.rpm`    - The web ui files for modification if desired (latest Consul bundles these in the binary)
 
-# Run
+# Running
 
 * Install the RPM(s) - the consul binary package and configuration are recommended at a minimum
 * Review and edit (if needed) `/etc/sysconfig/consul` and associated config under `/etc/consul.d/*` (config package)
