@@ -64,11 +64,11 @@ Or, do it manually by building the RPM as a non-root user from your home directo
 ## Result
 
 Five RPMs:
-* consul-<version>-<release>.rpm          - The binary and systemd service definition
-* consul-checks-<version>-<release>.rpm   - Example check scripts
-* consul-config-<version>-<release>.rpm   - Example agent configuration
-* consul-services-<version>-<release>.rpm - Example service definitions
-* consul-webui-<version>-<release>.rpm    - The web ui files for modification if desired (latest Consul bundles these in the binary)
+* `consul-<version>-<release>.rpm`          - The binary and systemd service definition
+* `consul-checks-<version>-<release>.rpm`   - Example check scripts
+* `consul-config-<version>-<release>.rpm`   - Example agent configuration
+* `consul-services-<version>-<release>.rpm` - Example service definitions
+* `consul-webui-<version>-<release>.rpm`    - The web ui files for modification if desired (latest Consul bundles these in the binary)
 
 # Run
 
