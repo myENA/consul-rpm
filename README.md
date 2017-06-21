@@ -93,6 +93,6 @@ Five RPMs will be copied to the `artifacts` folder:
 Config files are loaded in lexicographical order from the `config-dir` specified in `/etc/sysconfig/consul` (config package).
 You may modify and/or add to the provided configuration as needed.
 
-# More info
+# Further reading
 
 See the [consul.io](http://www.consul.io) website.
