@@ -3,4 +3,4 @@ BUILD/*
 RPMS/*
 SRPMS/*
 SOURCES/*.zip
-artifacts/*
+artifacts/*.rpm
