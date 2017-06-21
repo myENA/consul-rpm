@@ -7,7 +7,7 @@ rpmdev-setuptree
 ## link the specs
 ln -sf /tmp/build/SPECS/consul.spec $HOME/rpmbuild/SPECS/
 ## link the sources
-find /tmp/build/SOURCES -type f -exec ln -sf {} $HOME/rpmbuild/SOURCES \;
+find /tmp/build/SOURCES -type f -exec ln -sf {} $HOME/rpmbuild/SOURCES/ \;
 ## download sources
 spectool -g -R $HOME/rpmbuild/SPECS/consul.spec
 ## build our packages
