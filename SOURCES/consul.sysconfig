@@ -1,0 +1,13 @@
+## When adding a new node you may need to provide an encryption key
+## by adding "-encrypt=<key>" to the below options.
+## The key can be found by running "consul keyring -list" on any
+## server node in the cluster.
+
+## client configuration
+#OPTIONS="-config-dir=/etc/consul.d/client"
+## server configuration
+#OPTIONS="-config-dir=/etc/consul.d/server"
+
+## To bootstrap an entirely new cluster check the configuration
+## availble in the following location.
+#OPTIONS="-config-dir=/etc/consul.d/bootstrap"

@@ -1,0 +1,13 @@
+{
+    "service": {
+        "name": "docker",
+        "notes": "Docker Container Service",
+        "tags": [
+            "docker"
+        ],
+        "check": {
+            "script": "/var/lib/consul/checks/check_docker -base-url='http://localhost:4243'",
+            "interval": "10s"
+        }
+    }
+}
