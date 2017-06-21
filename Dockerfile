@@ -1,6 +1,8 @@
 FROM centos:7
 MAINTAINER Aaron Hurt <ahurt@ena.com>
 
+VOLUME ["/tmp/artifacts"]
+
 ADD . /tmp/build
 
 RUN yum -y install sudo
