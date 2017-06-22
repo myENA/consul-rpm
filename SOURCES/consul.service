@@ -1,5 +1,5 @@
 [Unit]
-Description=Comnsul is service discovery and configuration made easy.
+Description=Consul is service discovery and configuration made easy.
 Documentation=http://www.consul.io
 Requires=network-online.target
 After=network-online.target
