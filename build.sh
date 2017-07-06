@@ -27,6 +27,5 @@ rpmbuild -ba $HOME/rpmbuild/SPECS/*.spec
 ## copy built files out of the vagrant/docker environment
 ## skip if you are doing this manually
 if [ -f /.dockerenv ] || [ -f /.doing_the_vagrant ]; then
-    sudo cp -f $HOME/rpmbuild/RPMS/*/*.rpm /tmp/artifacts/ || true
-    sudo cp -f $HOME/rpmbuild/SRPMS/*.rpm /tmp/artifacts/ || true
+    sudo cp -rf $HOME/rpmbuild/RPMS $HOME/rpmbuild/SRPMS /tmp/artifacts/
 fi
