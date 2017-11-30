@@ -1,0 +1,2 @@
+server = false
+ui = false

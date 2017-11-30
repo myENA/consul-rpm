@@ -4,10 +4,15 @@
 ## server node in the cluster.
 
 ## client configuration
-#OPTIONS="-config-dir=/etc/consul.d/client"
+#OPTIONS="-config-dir=/etc/consul.d/client -protocol=3"
 ## server configuration
-#OPTIONS="-config-dir=/etc/consul.d/server"
+#OPTIONS="-config-dir=/etc/consul.d/server -protocol=3"
 
-## To bootstrap an entirely new cluster check the configuration
-## availble in the following location.
-#OPTIONS="-config-dir=/etc/consul.d/bootstrap"
+## To bootstrap an entirely new cluster you should add
+## the '-bootstrap-expect=2' option to the server line
+## above.  The number should be the minimum number
+## of nodes required for qurom in your cluster.
+## Please see the documentation below for more information.
+##
+## https://www.consul.io/docs/guides/bootstrapping.html
+##

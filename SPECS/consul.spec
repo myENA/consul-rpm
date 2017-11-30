@@ -9,8 +9,8 @@
 %define check_docker_dist https://github.com/newrelic/check_docker/releases/download/v2.3/check_docker-linux-2.3
 
 Name:           consul
-Version:        0.8.5
-Release:        0%{?dist}
+Version:        1.0.1
+Release:        1%{?dist}
 Summary:        Service discovery and configuration made easy.
 
 Group:          System Environment/Daemons
@@ -18,7 +18,6 @@ License:        Mozilla Public License, version 2.0
 URL:            http://www.consul.io
 
 Source0:        https://releases.hashicorp.com/%{name}/%{version}/%{name}_%{version}_linux_amd64.zip
-Source1:        https://releases.hashicorp.com/%{name}/%{version}/%{name}_%{version}_web_ui.zip
 Source2:        %{name}.service
 Source3:        %{name}.sysconfig
 
@@ -28,6 +27,9 @@ Requires(pre):      shadow-utils
 Requires(post):     systemd
 Requires(preun):    systemd
 Requires(postun):   systemd
+
+## Consul 0.9.0+ bundles the webui and no longer provides standalone files
+Obsoletes:  %{name}-webui < 0.9.0
 
 %description
 Consul is a tool for service discovery and configuration.
@@ -57,14 +59,6 @@ Requires:   consul
 %description checks
 Check scripts suitable for execution by %{name}.
 
-%package webui
-Summary:    Web UI files for %{name}
-Group:      System Environment/Daemons
-Requires:   consul
-
-%description webui
-Web UI distribution files for %{name}.
-
 %prep
 %setup -q -c
 
@@ -91,16 +85,10 @@ for svc in %{_sourcedir}/consul-server-*; do
 	%{__install} -p -D -m 0644 $svc %{buildroot}%{consul_confdir}/server/$(echo $(basename $svc)|sed s/consul-server-//)
 done
 
-## bootstrap configuration
-for svc in %{_sourcedir}/consul-bootstrap-*; do
-	%{__install} -p -D -m 0644 $svc %{buildroot}%{consul_confdir}/bootstrap/$(echo $(basename $svc)|sed s/consul-bootstrap-//)
-done
-
 ## common configuration
 for svc in %{_sourcedir}/consul-common-*; do
 	%{__install} -p -D -m 0644 $svc %{buildroot}%{consul_confdir}/client/$(echo $(basename $svc)|sed s/consul-common-//)
 	%{__install} -p -D -m 0644 $svc %{buildroot}%{consul_confdir}/server/$(echo $(basename $svc)|sed s/consul-common-//)
-	%{__install} -p -D -m 0644 $svc %{buildroot}%{consul_confdir}/bootstrap/$(echo $(basename $svc)|sed s/consul-common-//)
 done
 
 ## service configuration
@@ -110,9 +98,6 @@ done
 
 ## main binary
 %{__install} -p -D -m 0755 %{name} %{buildroot}%{_bindir}/%{name}
-
-## extract web ui files
-unzip %{SOURCE1} -d %{buildroot}%{consul_home}/dist -x '*.git*'
 
 ## build passing test
 echo 'building test_pass ...' > /dev/stderr
@@ -150,12 +135,17 @@ EOF
 curl -s -L -o %{buildroot}%{consul_home}/checks/check_docker %{check_docker_dist}
 
 %pre
+## add required user and group if needed
 getent group %{consul_group} >/dev/null || \
-    groupadd -r %{consul_group}
+	groupadd -r %{consul_group}
 getent passwd %{consul_user} >/dev/null || \
-    useradd -r -g %{consul_user} -d %{consul_home} \
-    -s /sbin/nologin -c %{name} %{consul_user}
+	useradd -r -g %{consul_user} -d %{consul_home} \
+	-s /sbin/nologin -c %{name} %{consul_user}
 exit 0
+## cleanup legacy 'bootstrap' configuration if present
+if [ -d %{consul_confdir}/server/bootstrap ]; then
+	rm -rf %{consul_confdir}/server/bootstrap
+fi
 
 %post
 %systemd_post %{name}.service
@@ -174,10 +164,8 @@ exit 0
 
 %files config
 %defattr(-,root,root,-)
-%dir %{consul_confdir}/bootstrap
 %dir %{consul_confdir}/client
 %dir %{consul_confdir}/server
-%config(noreplace) %{consul_confdir}/bootstrap/*
 %config(noreplace) %{consul_confdir}/client/*
 %config(noreplace) %{consul_confdir}/server/*
 %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
@@ -191,10 +179,5 @@ exit 0
 %defattr(-,root,root,-)
 %dir %{consul_home}/checks
 %attr(0755,root,root) %{consul_home}/checks/*
-
-%files webui
-%defattr(-,root,root,-)
-%dir %{consul_home}/dist
-%{consul_home}/dist/*
 
 %changelog
