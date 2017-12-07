@@ -10,7 +10,7 @@
 
 Name:           consul
 Version:        1.0.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Service discovery and configuration made easy.
 
 Group:          System Environment/Daemons
@@ -163,7 +163,7 @@ fi
 %attr(-,%{consul_user},%{consul_group}) %dir %{consul_home}/data
 
 %files config
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 %dir %{consul_confdir}/client
 %dir %{consul_confdir}/server
 %config(noreplace) %{consul_confdir}/client/*
@@ -171,13 +171,13 @@ fi
 %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
 
 %files services
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 %dir %{consul_confdir}/service
 %config(noreplace) %{consul_confdir}/service/*
 
 %files checks
-%defattr(-,root,root,-)
+%defattr(0755,root,root,0755)
 %dir %{consul_home}/checks
-%attr(0755,root,root) %{consul_home}/checks/*
+%{consul_home}/checks/*
 
 %changelog
