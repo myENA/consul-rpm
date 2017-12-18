@@ -9,8 +9,8 @@
 %define check_docker_dist https://github.com/newrelic/check_docker/releases/download/v2.3/check_docker-linux-2.3
 
 Name:           consul
-Version:        1.0.1
-Release:        2%{?dist}
+Version:        1.0.2
+Release:        0%{?dist}
 Summary:        Service discovery and configuration made easy.
 
 Group:          System Environment/Daemons
