@@ -67,8 +67,6 @@ Check scripts suitable for execution by %{name}.
 %install
 ## directories
 %{__install} -d -m 0750 %{buildroot}%{consul_home}/data
-%{__install} -d -m 0750 %{buildroot}%{consul_home}/ssl
-%{__install} -d -m 0750 %{buildroot}%{consul_home}/dist
 %{__install} -d -m 0750 %{buildroot}%{consul_home}/checks
 
 ## sytem files
