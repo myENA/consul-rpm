@@ -6,7 +6,7 @@
 %define debug_package  %{nil}
 
 ## docker check tool
-%define check_docker_dist https://github.com/newrelic/check_docker/releases/download/v2.3/check_docker-linux-2.3
+%define check_docker_dist https://github.com/myENA/check_docker/releases/download/v3.0/check_docker-linux-3.0
 
 Name:           consul
 Version:        1.0.6
