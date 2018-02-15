@@ -3,13 +3,8 @@ service {
   port = 80
   tags = [ "haproxy", "lb" ]
   checks {
-    name = "HAProxy stats check"
-    http = "http://admin:admin@localhost/haproxy?stats;csv"
-    interval = "10s"
-  }
-  checks {
-    name = "HAProxy default backend check"
-    http = "http://localhost.ena.com/check.json"
+    name = "haproxy-tcp-check"
+    http = "127.0.0.1:80"
     interval = "10s"
   }
 }
