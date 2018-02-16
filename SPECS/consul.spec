@@ -10,7 +10,7 @@
 
 Name:           consul
 Version:        1.0.6
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Service discovery and configuration made easy.
 
 Group:          System Environment/Daemons
