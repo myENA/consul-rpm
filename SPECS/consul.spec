@@ -9,8 +9,8 @@
 %define check_docker_dist https://github.com/myENA/check_docker/releases/download/v3.0/check_docker-linux-3.0
 
 Name:           consul
-Version:        1.0.6
-Release:        2%{?dist}
+Version:        1.1.0
+Release:        1%{?dist}
 Summary:        Service discovery and configuration made easy.
 
 Group:          System Environment/Daemons

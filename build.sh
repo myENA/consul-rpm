@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -ex  ## we like things verbose
 
-## install some helpers
+## install needed packages
 sudo yum install -y rpmdevtools rpm-devel
 
 ## setup our build path
