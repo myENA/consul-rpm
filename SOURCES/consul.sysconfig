@@ -8,8 +8,8 @@
 ## server configuration
 #OPTIONS="-config-dir=/etc/consul.d/server"
 
-## enable beta user interface
-CONSUL_UI_BETA=true
+## enable legacy user interface
+#CONSUL_UI_LEGACY=false
 
 ## To bootstrap an entirely new cluster you should add
 ## the '-bootstrap-expect=2' option to the server line
