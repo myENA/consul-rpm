@@ -1,4 +1,4 @@
-client_addr = "0.0.0.0"
+client_addr = "127.0.0.1 {{ GetPrivateInterfaces | exclude \"type\" \"IPv6\" | sort \"default\" | join \"address\" \" \" }}"
 data_dir = "/var/lib/consul/data"
 enable_script_checks = true
 performance {
