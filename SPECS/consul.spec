@@ -9,7 +9,7 @@
 %define check_docker_dist https://github.com/myENA/check_docker/releases/download/v3.0/check_docker-linux-3.0
 
 Name:           consul
-Version:        1.2.3
+Version:        1.4.0
 Release:        0%{?dist}
 Summary:        Service discovery and configuration made easy.
 
@@ -98,39 +98,31 @@ done
 %{__install} -p -D -m 0755 %{name} %{buildroot}%{_bindir}/%{name}
 
 ## build passing test
-echo 'building test_pass ...' > /dev/stderr
-cat << EOF > %{buildroot}%{consul_home}/checks/test_pass
+echo 'building test passing check ...' > /dev/stderr
+cat << EOF > %{buildroot}%{consul_home}/checks/pass
 #!/bin/bash
 echo "[OKAY] TEST"
 exit 0
 EOF
 
 ## build warning test
-echo 'building test_warn ...' > /dev/stderr
-cat << EOF > %{buildroot}%{consul_home}/checks/test_warn
+echo 'building test warning check ...' > /dev/stderr
+cat << EOF > %{buildroot}%{consul_home}/checks/warn
 #!/bin/bash
 echo "[WARN] TEST"
 exit 1
 EOF
 
 ## build failing test
-echo 'building test_fail ...' > /dev/stderr
-cat << EOF > %{buildroot}%{consul_home}/checks/test_fail
+echo 'building test failing check ...' > /dev/stderr
+cat << EOF > %{buildroot}%{consul_home}/checks/fail
 #!/bin/bash
 echo "[FAIL] TEST"
 exit 2
 EOF
 
-## generic tcp port check
-echo 'building check_tcp ...' > /dev/stderr
-cat << EOF > %{buildroot}%{consul_home}/checks/check_tcp
-#!/bin/bash
-echo "[DEPRECATED] Please use the 'tcp' check"
-exit 1
-EOF
-
 ## fetch docker check
-curl -s -L -o %{buildroot}%{consul_home}/checks/check_docker %{check_docker_dist}
+curl -s -L -o %{buildroot}%{consul_home}/checks/docker %{check_docker_dist}
 
 %pre
 ## add required user and group if needed

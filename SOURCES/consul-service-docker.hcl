@@ -4,7 +4,7 @@ service {
   checks {
     name = "docker-script-check"
     args = [
-      "/var/lib/consul/checks/check_docker",
+      "/var/lib/consul/checks/docker",
       "-minimal",
       "-base-url=http://localhost:4243",
       "-warn-data-space=80",
