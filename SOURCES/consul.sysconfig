@@ -8,9 +8,6 @@
 ## server configuration
 #OPTIONS="-config-dir=/etc/consul.d/server"
 
-## enable legacy user interface
-#CONSUL_UI_LEGACY=false
-
 ## To bootstrap an entirely new cluster you should add
 ## the '-bootstrap-expect=2' option to the server line
 ## above.  The number should be the minimum number
