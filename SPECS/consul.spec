@@ -9,7 +9,7 @@
 %define check_docker_dist https://github.com/myENA/check_docker/releases/download/v3.0/check_docker-linux-3.0
 
 Name:           consul
-Version:        1.7.0
+Version:        1.7.3
 Release:        0%{?dist}
 Summary:        Service discovery and configuration made easy.
 
@@ -156,8 +156,18 @@ fi
 %defattr(0644,root,root,0755)
 %dir %{consul_confdir}/client
 %dir %{consul_confdir}/server
-%config(noreplace) %{consul_confdir}/client/*
-%config(noreplace) %{consul_confdir}/server/*
+%{consul_confdir}/client/base.hcl
+%{consul_confdir}/client/bind.hcl
+%{consul_confdir}/client/client.hcl
+%{consul_confdir}/client/datacenter.hcl
+%{consul_confdir}/client/join.hcl
+%{consul_confdir}/client/logging.hcl
+%{consul_confdir}/server/base.hcl
+%{consul_confdir}/server/bind.hcl
+%{consul_confdir}/server/datacenter.hcl
+%{consul_confdir}/server/join.hcl
+%{consul_confdir}/server/logging.hcl
+%{consul_confdir}/server/server.hcl
 %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
 
 %files services
