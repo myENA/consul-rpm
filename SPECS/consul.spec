@@ -168,7 +168,7 @@ fi
 %config(noreplace) %{consul_confdir}/server/join.hcl
 %config(noreplace) %{consul_confdir}/server/logging.hcl
 %config(noreplace) %{consul_confdir}/server/server.hcl
-%config(noreplace) %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
+%config(noreplace) %{_sysconfdir}/sysconfig/%{name}
 
 %files services
 %defattr(0644,root,root,0755)
