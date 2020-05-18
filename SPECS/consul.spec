@@ -10,7 +10,7 @@
 
 Name:           consul
 Version:        1.7.3
-Release:        0%{?dist}
+Release:        1%{?dist}
 Summary:        Service discovery and configuration made easy.
 
 Group:          System Environment/Daemons
@@ -156,19 +156,19 @@ fi
 %defattr(0644,root,root,0755)
 %dir %{consul_confdir}/client
 %dir %{consul_confdir}/server
-%{consul_confdir}/client/base.hcl
-%{consul_confdir}/client/bind.hcl
-%{consul_confdir}/client/client.hcl
-%{consul_confdir}/client/datacenter.hcl
-%{consul_confdir}/client/join.hcl
-%{consul_confdir}/client/logging.hcl
-%{consul_confdir}/server/base.hcl
-%{consul_confdir}/server/bind.hcl
-%{consul_confdir}/server/datacenter.hcl
-%{consul_confdir}/server/join.hcl
-%{consul_confdir}/server/logging.hcl
-%{consul_confdir}/server/server.hcl
-%config(noreplace) %{_sysconfdir}/sysconfig/%{name}
+%config(noreplace) %{consul_confdir}/client/base.hcl
+%config(noreplace) %{consul_confdir}/client/bind.hcl
+%config(noreplace) %{consul_confdir}/client/client.hcl
+%config(noreplace) %{consul_confdir}/client/datacenter.hcl
+%config(noreplace) %{consul_confdir}/client/join.hcl
+%config(noreplace) %{consul_confdir}/client/logging.hcl
+%config(noreplace) %{consul_confdir}/server/base.hcl
+%config(noreplace) %{consul_confdir}/server/bind.hcl
+%config(noreplace) %{consul_confdir}/server/datacenter.hcl
+%config(noreplace) %{consul_confdir}/server/join.hcl
+%config(noreplace) %{consul_confdir}/server/logging.hcl
+%config(noreplace) %{consul_confdir}/server/server.hcl
+%config(noreplace) %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
 
 %files services
 %defattr(0644,root,root,0755)
