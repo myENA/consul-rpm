@@ -1,2 +1,2 @@
-log_level = "INFO"
-enable_syslog = true
+log_level = "ERROR"
+enable_syslog = false
